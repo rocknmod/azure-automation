@@ -1,6 +1,5 @@
 # aws-automation
 
 Exercise to create a single ressource in AWS using the following IaC tools:
-- Ansible
-- Cloudformation
 - Terraform
+- Ansible
