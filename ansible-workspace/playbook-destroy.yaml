@@ -1,0 +1,13 @@
+#main file for setting up aws vpc
+
+---
+- hosts: localhost
+  vars:
+    state: absent
+  vars_files:
+  - "{{ aws_setup|default('aws-setup.yaml') }}"
+  - common-vars.yaml
+
+  tasks:
+  - include_tasks: tasks/vpc/get-vpc-id.yaml
+  - include_tasks: tasks/vpc/create-vpc.yaml
