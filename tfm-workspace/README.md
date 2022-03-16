@@ -7,4 +7,4 @@ Regions presented:
 - alternate region is eu-west-2
 
 The Definition change log is available under the file:
-definition-changelog.md
+- definition-changelog.md
