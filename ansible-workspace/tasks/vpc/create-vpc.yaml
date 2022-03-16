@@ -4,17 +4,17 @@
   - name: create VPC in SYD
     ec2_vpc_net:
             name: "{{ vpc1.name }}"
-            cidr_block: "{{ vpc.prefix }}"
+            cidr_block: "{{ vpc1.prefix }}"
             region: "{{ global.regionpri }}"
             state: "{{ computed.state }}"
     register: vpc1_id
   - name: create VPC in LDN
     ec2_vpc_net:
             name: "{{ vpc2.name }}"
-            cidr_block: "{{ vpc.prefix }}"
+            cidr_block: "{{ vpc2.prefix }}"
             region: "{{ global.regionsec }}"
             state: "{{ computed.state }}"
-    register: vpc1_id
+    register: vpc2_id
   
 - copy:
       content: "{{ vpc1_id | to_nice_yaml }}"
