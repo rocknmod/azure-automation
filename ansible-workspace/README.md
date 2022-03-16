@@ -1,1 +1,1 @@
-This is the new Ansible workspace
+This is the Ansible workspace for AWS.
