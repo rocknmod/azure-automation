@@ -1,4 +1,5 @@
-#Create VPC in ap-southeast-2
+# Terraform network.tf module
+# Set up alternate providers for network module
 terraform {
   required_providers {
     aws = {
@@ -8,11 +9,30 @@ terraform {
     }
   }
 }
-resource "aws_vpc" "vpc_0001" {
-  provider             = aws.sec
-  cidr_block           = "10.0.0.0/24"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-  tags = { Name = "my-first-vpc"
+
+###############
+#create the VPCs
+###############
+
+# Create VPC in default ap-southeast-2
+
+resource "aws_vpc" "vpc_syd0001" {
+  cidr_block           = var.VPC_cidrblock
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
+  tags = { Name = "vpc_syd0001"
   }
 }
+
+# Create VPC in alernate eu-west-2
+
+resource "aws_vpc" "vpc_ldn0001" {
+  provider             = aws.sec
+  cidr_block           = var.VPC_cidrblock
+  enable_dns_support   = var.enable_dns_support
+  enable_dns_hostnames = var.enable_dns_hostnames
+  tags = { Name = "vpc_ldn0001"
+  }
+}
+
+#end of VPC resource

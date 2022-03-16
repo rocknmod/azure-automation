@@ -1,11 +1,18 @@
-# variables.tf for network.tf
+# variables.tf for network.tf module
 
-variable "region-master" {
-  description = "Main region for deployment"
-  default     = "ap-southeast-2"
+
+variable "VPC_cidrblock" {
+  default = "10.0.0.0/16"
 }
 
-variable "availabilityZone" {
-  description = "picking the right availability zone in your region"
-  default     = "us-east-2a"
+variable "enable_dns_support" {
+  type    = bool
+  default = true
 }
+
+variable "enable_dns_hostnames" {
+  type    = bool
+  default = true
+}
+
+# end of variables
