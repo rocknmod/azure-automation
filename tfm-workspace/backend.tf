@@ -1,6 +1,9 @@
 terraform {
-  backend "local" {
-    path          = "/home/vagrant/AWS/terraform-backend/terraform.tfstate"
-    workspace_dir = "/home/vagrant/AWS/terraform-backend/terraform.tfstate.d"
+  required_version = ">=0.12.0"
+  backend "s3" {
+    region  = "ap-southeast-2"
+    profile = "default"
+    key     = "terraformstatefile"
+    bucket  = "terraformstatebucket192039"
   }
 }
