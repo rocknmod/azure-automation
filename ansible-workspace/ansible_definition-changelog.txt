@@ -1,0 +1,331 @@
+ansible-workspace$ ansible-playbook playbook-deploy.yaml -vvv
+ansible-playbook [core 2.12.2]
+  config file = /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg
+  configured module search path = ['/home/vagrant/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.8/dist-packages/ansible
+  ansible collection location = /home/vagrant/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 3.8.10 (default, Nov 26 2021, 20:14:08) [GCC 9.3.0]
+  jinja version = 3.0.3
+  libyaml = True
+Using /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg as config file
+host_list declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+script declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+auto declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+Parsed /etc/ansible/hosts inventory source with ini plugin
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: playbook-deploy.yaml ****************************************************************************************************************************************************
+1 plays in playbook-deploy.yaml
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+PLAY [localhost] ******************************************************************************************************************************************************************
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+META: ran handlers
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+TASK [include_tasks] **************************************************************************************************************************************************************
+task path: /home/vagrant/AWS/aws-automation/ansible-workspace/playbook-deploy.yaml:10
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+redirecting (type: modules) ansible.builtin.ec2_vpc_net to amazon.aws.ec2_vpc_net
+redirecting (type: modules) ansible.builtin.ec2_vpc_net to amazon.aws.ec2_vpc_net
+included: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml for localhost
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+TASK [create VPC in SYD] **********************************************************************************************************************************************************
+task path: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml:4
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: vagrant
+<127.0.0.1> EXEC /bin/sh -c 'echo ~vagrant && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/vagrant/.ansible/tmp `"&& mkdir "` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083 `" && echo ansible-tmp-1647549740.0317082-38962-213209921002083="` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083 `" ) && sleep 0'
+redirecting (type: modules) ansible.builtin.ec2_vpc_net to amazon.aws.ec2_vpc_net
+Using module file /usr/local/lib/python3.8/dist-packages/ansible_collections/amazon/aws/plugins/modules/ec2_vpc_net.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmpayoxy0xy TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083/AnsiballZ_ec2_vpc_net.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083/AnsiballZ_ec2_vpc_net.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083/AnsiballZ_ec2_vpc_net.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/vagrant/.ansible/tmp/ansible-tmp-1647549740.0317082-38962-213209921002083/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => {
+    "changed": false,
+    "debugging": {
+        "expected_cidrs": [
+            "172.19.1.0/24"
+        ],
+        "to_add": [],
+        "to_remove": []
+    },
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_ca_bundle": null,
+            "aws_config": null,
+            "aws_secret_key": null,
+            "cidr_block": [
+                "172.19.1.0/24"
+            ],
+            "debug_botocore_endpoint_logs": false,
+            "dhcp_opts_id": null,
+            "dns_hostnames": true,
+            "dns_support": true,
+            "ec2_url": null,
+            "ipv6_cidr": false,
+            "multi_ok": false,
+            "name": "vpc_syd0002",
+            "profile": null,
+            "purge_cidrs": false,
+            "region": "ap-southeast-2",
+            "security_token": null,
+            "state": "present",
+            "tags": null,
+            "tenancy": "default",
+            "validate_certs": true
+        }
+    },
+    "vpc": {
+        "cidr_block": "172.19.1.0/24",
+        "cidr_block_association_set": [
+            {
+                "association_id": "vpc-cidr-assoc-002d2fae7f9b90211",
+                "cidr_block": "172.19.1.0/24",
+                "cidr_block_state": {
+                    "state": "associated"
+                }
+            }
+        ],
+        "classic_link_enabled": false,
+        "dhcp_options_id": "dopt-0f89849eddd5cdc17",
+        "id": "vpc-06c5053fda49eb897",
+        "instance_tenancy": "default",
+        "is_default": false,
+        "owner_id": "048336976279",
+        "state": "available",
+        "tags": {
+            "Name": "vpc_syd0002"
+        }
+    }
+}
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+TASK [create VPC in LDN] **********************************************************************************************************************************************************
+task path: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml:11
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: vagrant
+<127.0.0.1> EXEC /bin/sh -c 'echo ~vagrant && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/vagrant/.ansible/tmp `"&& mkdir "` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742 `" && echo ansible-tmp-1647549741.9094584-38989-44850302671742="` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742 `" ) && sleep 0'
+redirecting (type: modules) ansible.builtin.ec2_vpc_net to amazon.aws.ec2_vpc_net
+Using module file /usr/local/lib/python3.8/dist-packages/ansible_collections/amazon/aws/plugins/modules/ec2_vpc_net.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmpm5013fki TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742/AnsiballZ_ec2_vpc_net.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742/AnsiballZ_ec2_vpc_net.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742/AnsiballZ_ec2_vpc_net.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/vagrant/.ansible/tmp/ansible-tmp-1647549741.9094584-38989-44850302671742/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => {
+    "changed": false,
+    "debugging": {
+        "expected_cidrs": [
+            "172.19.2.0/24"
+        ],
+        "to_add": [],
+        "to_remove": []
+    },
+    "invocation": {
+        "module_args": {
+            "aws_access_key": null,
+            "aws_ca_bundle": null,
+            "aws_config": null,
+            "aws_secret_key": null,
+            "cidr_block": [
+                "172.19.2.0/24"
+            ],
+            "debug_botocore_endpoint_logs": false,
+            "dhcp_opts_id": null,
+            "dns_hostnames": true,
+            "dns_support": true,
+            "ec2_url": null,
+            "ipv6_cidr": false,
+            "multi_ok": false,
+            "name": "vpc_ldn0002",
+            "profile": null,
+            "purge_cidrs": false,
+            "region": "eu-west-2",
+            "security_token": null,
+            "state": "present",
+            "tags": null,
+            "tenancy": "default",
+            "validate_certs": true
+        }
+    },
+    "vpc": {
+        "cidr_block": "172.19.2.0/24",
+        "cidr_block_association_set": [
+            {
+                "association_id": "vpc-cidr-assoc-0acaebe425222f69a",
+                "cidr_block": "172.19.2.0/24",
+                "cidr_block_state": {
+                    "state": "associated"
+                }
+            }
+        ],
+        "classic_link_enabled": false,
+        "dhcp_options_id": "dopt-0ae772ada40e57940",
+        "id": "vpc-06b063943f77bf7ee",
+        "instance_tenancy": "default",
+        "is_default": false,
+        "owner_id": "048336976279",
+        "state": "available",
+        "tags": {
+            "Name": "vpc_ldn0002"
+        }
+    }
+}
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+TASK [copy] ***********************************************************************************************************************************************************************
+task path: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml:19
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: vagrant
+<127.0.0.1> EXEC /bin/sh -c 'echo ~vagrant && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/vagrant/.ansible/tmp `"&& mkdir "` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651 `" && echo ansible-tmp-1647549748.2103739-39018-37415697902651="` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.8/dist-packages/ansible/modules/stat.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmp7hz1gyn4 TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_stat.py && sleep 0'
+Using module file /usr/local/lib/python3.8/dist-packages/ansible/modules/file.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmpfha4n_lk TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_file.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_file.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/AnsiballZ_file.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.2103739-39018-37415697902651/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => {
+    "changed": false,
+    "checksum": "02d59cddd2b84244bbf6af09c4f166783a89e068",
+    "dest": "./logging/vpc1_info.yaml",
+    "diff": {
+        "after": {
+            "path": "./logging/vpc1_info.yaml"
+        },
+        "before": {
+            "path": "./logging/vpc1_info.yaml"
+        }
+    },
+    "gid": 1000,
+    "group": "vagrant",
+    "invocation": {
+        "module_args": {
+            "_diff_peek": null,
+            "_original_basename": "tmpr61suds1",
+            "access_time": null,
+            "access_time_format": "%Y%m%d%H%M.%S",
+            "attributes": null,
+            "dest": "./logging/vpc1_info.yaml",
+            "follow": true,
+            "force": false,
+            "group": null,
+            "mode": null,
+            "modification_time": null,
+            "modification_time_format": "%Y%m%d%H%M.%S",
+            "owner": null,
+            "path": "./logging/vpc1_info.yaml",
+            "recurse": false,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "state": "file",
+            "unsafe_writes": false
+        }
+    },
+    "mode": "0664",
+    "owner": "vagrant",
+    "path": "./logging/vpc1_info.yaml",
+    "size": 569,
+    "state": "file",
+    "uid": 1000
+}
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+
+TASK [copy] ***********************************************************************************************************************************************************************
+task path: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml:23
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: vagrant
+<127.0.0.1> EXEC /bin/sh -c 'echo ~vagrant && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/vagrant/.ansible/tmp `"&& mkdir "` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335 `" && echo ansible-tmp-1647549748.7137241-39056-75497611734335="` echo /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335 `" ) && sleep 0'
+Using module file /usr/local/lib/python3.8/dist-packages/ansible/modules/stat.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmpw6qoh5z6 TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_stat.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_stat.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_stat.py && sleep 0'
+Using module file /usr/local/lib/python3.8/dist-packages/ansible/modules/file.py
+<127.0.0.1> PUT /home/vagrant/.ansible/tmp/ansible-local-38953i34efdk1/tmpawern1kn TO /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_file.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/ /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_file.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/AnsiballZ_file.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/vagrant/.ansible/tmp/ansible-tmp-1647549748.7137241-39056-75497611734335/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => {
+    "changed": false,
+    "checksum": "9ea3faa1bec6a69b2c85f766c8b6c387c177b53f",
+    "dest": "./logging/vpc2_info.yaml",
+    "diff": {
+        "after": {
+            "path": "./logging/vpc2_info.yaml"
+        },
+        "before": {
+            "path": "./logging/vpc2_info.yaml"
+        }
+    },
+    "gid": 1000,
+    "group": "vagrant",
+    "invocation": {
+        "module_args": {
+            "_diff_peek": null,
+            "_original_basename": "tmphmosorny",
+            "access_time": null,
+            "access_time_format": "%Y%m%d%H%M.%S",
+            "attributes": null,
+            "dest": "./logging/vpc2_info.yaml",
+            "follow": true,
+            "force": false,
+            "group": null,
+            "mode": null,
+            "modification_time": null,
+            "modification_time_format": "%Y%m%d%H%M.%S",
+            "owner": null,
+            "path": "./logging/vpc2_info.yaml",
+            "recurse": false,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "state": "file",
+            "unsafe_writes": false
+        }
+    },
+    "mode": "0664",
+    "owner": "vagrant",
+    "path": "./logging/vpc2_info.yaml",
+    "size": 569,
+    "state": "file",
+    "uid": 1000
+}
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+META: ran handlers
+Read vars_file '{{ aws_setup|default('aws-setup.yaml') }}'
+Read vars_file 'common-vars.yaml'
+META: ran handlers
+
+PLAY RECAP ************************************************************************************************************************************************************************
+localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

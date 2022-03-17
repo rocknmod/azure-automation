@@ -15,3 +15,4 @@
 - set_fact:
     vpc_id:
       vpc: "{{ vpc_list.vpcs[0] }}"
+      vpc: "{{ vpc_list.vpcs[1] }}"

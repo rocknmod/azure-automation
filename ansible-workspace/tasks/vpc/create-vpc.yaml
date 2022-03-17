@@ -18,9 +18,9 @@
   
 - copy:
       content: "{{ vpc1_id | to_nice_yaml }}"
-      dest: "{{ computed.logging }}/vpc_info.yaml"
+      dest: "{{ computed.logging }}/vpc1_info.yaml"
   tags: [ always ]
 - copy:
      content: "{{ vpc2_id | to_nice_yaml }}"
-     dest: "{{ computed.logging }}/vpc_info.yaml"
+     dest: "{{ computed.logging }}/vpc2_info.yaml"
   tags: [ always ]
