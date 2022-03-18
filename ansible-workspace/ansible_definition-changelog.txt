@@ -56,7 +56,7 @@ vagrant ansible-workspace (dev) $ aws_vpc
 ]
 
 ###########################################################
-#######     Change tag name for existing VPC  	  #########
+#######     Change prefix for existing VPC	  #########
 ###########################################################
 
 vagrant ansible-workspace (dev) $ vim aws-setup.yaml
