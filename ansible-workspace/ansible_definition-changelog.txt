@@ -5,42 +5,93 @@
 vagrant ansible-workspace (dev) $ ansible-playbook playbook-deploy.yaml -v
 Using /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg as config file
 
-PLAY [localhost] ******************************************************************************************************************************************************************
+PLAY [localhost] **********************************************************************
 
-TASK [include_tasks] **************************************************************************************************************************************************************
+TASK [include_tasks] ******************************************************************
 included: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml for localhost
 
-TASK [create VPC in SYD] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "debugging": {"expected_cidrs": ["172.20.1.0/24"], "to_add": [], "to_remove": []}, "vpc": {"cidr_block": "172.20.1.0/24", "cidr_block_association_set": [{"association_id": "vpc-cidr-assoc-037d89e58ef8574df", "cidr_block": "172.20.1.0/24", "cidr_block_state": {"state": "associated"}}], "classic_link_enabled": false, "dhcp_options_id": "dopt-0f89849eddd5cdc17", "id": "vpc-0c249e5a2e4ba0b44", "instance_tenancy": "default", "is_default": false, "owner_id": "048336976279", "state": "available", "tags": {"Name": "vpc_syd0002"}}}
+TASK [create VPC in SYD] **************************************************************
+changed: [localhost] => changed=true
+  debugging:
+    expected_cidrs:
+    - 172.20.30.0/24
+    to_add: []
+    to_remove: []
+  vpc:
+    cidr_block: 172.20.30.0/24
+    cidr_block_association_set:
+    - association_id: vpc-cidr-assoc-0af804c6488a55f83
+      cidr_block: 172.20.30.0/24
+      cidr_block_state:
+        state: associated
+    classic_link_enabled: false
+    dhcp_options_id: dopt-0f89849eddd5cdc17
+    id: vpc-02492f230cf64d2fd
+    instance_tenancy: default
+    is_default: false
+    owner_id: 048336976279
+    state: available
+    tags:
+      Name: vpc_syd0002
 
-TASK [create VPC in LDN] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "debugging": {"expected_cidrs": ["172.19.2.0/24"], "to_add": [], "to_remove": []}, "vpc": {"cidr_block": "172.19.2.0/24", "cidr_block_association_set": [{"association_id": "vpc-cidr-assoc-0e99b4aec08f1737c", "cidr_block": "172.19.2.0/24", "cidr_block_state": {"state": "associated"}}], "classic_link_enabled": false, "dhcp_options_id": "dopt-0ae772ada40e57940", "id": "vpc-0d6a88accb9536267", "instance_tenancy": "default", "is_default": false, "owner_id": "048336976279", "state": "available", "tags": {"Name": "vpc_ldn0002"}}}
+TASK [create VPC in LDN] **************************************************************
+changed: [localhost] => changed=true
+  debugging:
+    expected_cidrs:
+    - 172.19.30.0/24
+    to_add: []
+    to_remove: []
+  vpc:
+    cidr_block: 172.19.30.0/24
+    cidr_block_association_set:
+    - association_id: vpc-cidr-assoc-05227bc4d7675f32c
+      cidr_block: 172.19.30.0/24
+      cidr_block_state:
+        state: associated
+    classic_link_enabled: false
+    dhcp_options_id: dopt-0ae772ada40e57940
+    id: vpc-0a36be3ef621af5b2
+    instance_tenancy: default
+    is_default: false
+    owner_id: 048336976279
+    state: available
+    tags:
+      Name: vpc_ldn0002
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "c845d613b49551cb1f2d9bd748e3ef9d0dc9a03f", "dest": "./logging/vpc1_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "0d90b7f38027f2c58a13b1e63d7c4030", "mode": "0664", "owner": "vagrant", "size": 568, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647572958.5285614-50992-38274037760002/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: c843ff1a062a65cd0fb6718a3a9086fdc0645418
+  dest: ./logging/vpc1_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: bcb31966939de3411578d0d007dfbb2f
+  mode: '0664'
+  owner: vagrant
+  size: 571
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576231.0143833-54322-2529501991041/source
+  state: file
+  uid: 1000
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "97d26ac5969bd8d5aded3636152c7c883105256c", "dest": "./logging/vpc2_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "fa6d2404054529c2763e4d30dd3665e8", "mode": "0664", "owner": "vagrant", "size": 568, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647572958.9676192-51034-137358419372956/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: e6355ac53fc7b7fc0f6f3fb48609baf60d25f3b3
+  dest: ./logging/vpc2_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: 0d09ac53698aaea666b0ff57e1e5083c
+  mode: '0664'
+  owner: vagrant
+  size: 571
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576231.4809349-54364-189913458281743/source
+  state: file
+  uid: 1000
 
-PLAY RECAP ************************************************************************************************************************************************************************
+PLAY RECAP ****************************************************************************
 localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 
 ######## OUTPUT ############
 
-vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
-[
-    {
-        "id": "vpc-0d6a88accb9536267",
-        "cidr": "172.19.2.0/24",
-        "name": "vpc_ldn0002"
-    },
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
-    }
-]
 vagrant ansible-workspace (dev) $ aws_vpc
 [
     {
@@ -49,9 +100,22 @@ vagrant ansible-workspace (dev) $ aws_vpc
         "name": null
     },
     {
-        "id": "vpc-0c249e5a2e4ba0b44",
-        "cidr": "172.20.1.0/24",
+        "id": "vpc-02492f230cf64d2fd",
+        "cidr": "172.20.30.0/24",
         "name": "vpc_syd0002"
+    }
+]
+vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
+[
+    {
+        "id": "vpc-03143662b677b4758",
+        "cidr": "172.31.0.0/16",
+        "name": null
+    },
+    {
+        "id": "vpc-0a36be3ef621af5b2",
+        "cidr": "172.19.30.0/24",
+        "name": "vpc_ldn0002"
     }
 ]
 
@@ -68,60 +132,103 @@ global:
 
 vpc1:
   name: vpc_syd0002
-  prefix: 172.20.30.0/24
+  prefix: 172.20.111.0/24
 
 vpc2:
   name: vpc_ldn0002
   prefix: 172.19.30.0/24
 
 
-
-
 vagrant ansible-workspace (dev) $ ansible-playbook playbook-deploy.yaml -v
 Using /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg as config file
 
-PLAY [localhost] ******************************************************************************************************************************************************************
+PLAY [localhost] **********************************************************************
 
-TASK [include_tasks] **************************************************************************************************************************************************************
+TASK [include_tasks] ******************************************************************
 included: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml for localhost
 
-TASK [create VPC in SYD] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "debugging": {"expected_cidrs": ["172.20.30.0/24"], "to_add": [], "to_remove": []}, "vpc": {"cidr_block": "172.20.30.0/24", "cidr_block_association_set": [{"association_id": "vpc-cidr-assoc-00e372fa2db4d12fc", "cidr_block": "172.20.30.0/24", "cidr_block_state": {"state": "associated"}}], "classic_link_enabled": false, "dhcp_options_id": "dopt-0f89849eddd5cdc17", "id": "vpc-06631e0f7f1691e76", "instance_tenancy": "default", "is_default": false, "owner_id": "048336976279", "state": "available", "tags": {"Name": "vpc_syd0002"}}}
+TASK [create VPC in SYD] **************************************************************
+changed: [localhost] => changed=true
+  debugging:
+    expected_cidrs:
+    - 172.20.111.0/24
+    to_add: []
+    to_remove: []
+  vpc:
+    cidr_block: 172.20.111.0/24
+    cidr_block_association_set:
+    - association_id: vpc-cidr-assoc-013edfcc035421beb
+      cidr_block: 172.20.111.0/24
+      cidr_block_state:
+        state: associated
+    classic_link_enabled: false
+    dhcp_options_id: dopt-0f89849eddd5cdc17
+    id: vpc-04e913fb2cf7561f1
+    instance_tenancy: default
+    is_default: false
+    owner_id: 048336976279
+    state: available
+    tags:
+      Name: vpc_syd0002
 
-TASK [create VPC in LDN] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "debugging": {"expected_cidrs": ["172.19.30.0/24"], "to_add": [], "to_remove": []}, "vpc": {"cidr_block": "172.19.30.0/24", "cidr_block_association_set": [{"association_id": "vpc-cidr-assoc-02fce57d01a5f3f54", "cidr_block": "172.19.30.0/24", "cidr_block_state": {"state": "associated"}}], "classic_link_enabled": false, "dhcp_options_id": "dopt-0ae772ada40e57940", "id": "vpc-060d1626a35c8ff8d", "instance_tenancy": "default", "is_default": false, "owner_id": "048336976279", "state": "available", "tags": {"Name": "vpc_ldn0002"}}}
+TASK [create VPC in LDN] **************************************************************
+ok: [localhost] => changed=false
+  debugging:
+    expected_cidrs:
+    - 172.19.30.0/24
+    to_add: []
+    to_remove: []
+  vpc:
+    cidr_block: 172.19.30.0/24
+    cidr_block_association_set:
+    - association_id: vpc-cidr-assoc-05227bc4d7675f32c
+      cidr_block: 172.19.30.0/24
+      cidr_block_state:
+        state: associated
+    classic_link_enabled: false
+    dhcp_options_id: dopt-0ae772ada40e57940
+    id: vpc-0a36be3ef621af5b2
+    instance_tenancy: default
+    is_default: false
+    owner_id: 048336976279
+    state: available
+    tags:
+      Name: vpc_ldn0002
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "7a17f6d61a4bd09fe47f628cb2334ab1bf54c621", "dest": "./logging/vpc1_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "75263fdf7add9136773b544f20515b92", "mode": "0664", "owner": "vagrant", "size": 571, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647573157.108668-51405-176922326476475/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: 1cbfb72d530ba542c64607548594a9ddb99eba68
+  dest: ./logging/vpc1_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: 0cdf512af1f41ae7da145398b554cb22
+  mode: '0664'
+  owner: vagrant
+  size: 574
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576488.9324663-54626-41586751979292/source
+  state: file
+  uid: 1000
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "303f0a7a3f3bbd126600c0f4251bf2d7267dccf0", "dest": "./logging/vpc2_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "20f0017960d75e2f25bba606de5ee50d", "mode": "0664", "owner": "vagrant", "size": 571, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647573157.5617971-51447-53966609310272/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: c6a58bd3d948680f69deb7c65cc7ba4dee3a38dc
+  dest: ./logging/vpc2_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: 8368c8ea2bd142f2891c2660ac0e5962
+  mode: '0664'
+  owner: vagrant
+  size: 572
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576489.4082978-54668-225815388256871/source
+  state: file
+  uid: 1000
 
-PLAY RECAP ************************************************************************************************************************************************************************
-localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
+PLAY RECAP ****************************************************************************
+localhost                  : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 
 
 ########## OUTPUT ##############
-vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
-[
-    {
-        "id": "vpc-060d1626a35c8ff8d",
-        "cidr": "172.19.30.0/24",
-        "name": "vpc_ldn0002"
-    },
-    {
-        "id": "vpc-0d6a88accb9536267",
-        "cidr": "172.19.2.0/24",
-        "name": "vpc_ldn0002"
-    },
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
-    }
-]
 vagrant ansible-workspace (dev) $ aws_vpc
 [
     {
@@ -130,21 +237,32 @@ vagrant ansible-workspace (dev) $ aws_vpc
         "name": null
     },
     {
-        "id": "vpc-0c249e5a2e4ba0b44",
-        "cidr": "172.20.1.0/24",
+        "id": "vpc-04e913fb2cf7561f1",
+        "cidr": "172.20.111.0/24",
         "name": "vpc_syd0002"
     },
     {
-        "id": "vpc-06631e0f7f1691e76",
+        "id": "vpc-02492f230cf64d2fd",
         "cidr": "172.20.30.0/24",
         "name": "vpc_syd0002"
     }
 ]
+vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
+[
+    {
+        "id": "vpc-03143662b677b4758",
+        "cidr": "172.31.0.0/16",
+        "name": null
+    },
+    {
+        "id": "vpc-0a36be3ef621af5b2",
+        "cidr": "172.19.30.0/24",
+        "name": "vpc_ldn0002"
+    }
+]
 
 
-
-
-With this simple ansible playbook, changing the prefix of the VPC is creating a new ressource.
+With this simple ansible playbook, changing the prefix of the VPC is creating a new VPC.
 
 
 #################################################
@@ -154,24 +272,48 @@ With this simple ansible playbook, changing the prefix of the VPC is creating a 
 vagrant ansible-workspace (dev) $ ansible-playbook playbook-deploy.yaml -v -e state=absent
 Using /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg as config file
 
-PLAY [localhost] ******************************************************************************************************************************************************************
+PLAY [localhost] **********************************************************************
 
-TASK [include_tasks] **************************************************************************************************************************************************************
+TASK [include_tasks] ******************************************************************
 included: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml for localhost
 
-TASK [create VPC in SYD] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "vpc": {}}
+TASK [create VPC in SYD] **************************************************************
+changed: [localhost] => changed=true
+  vpc: {}
 
-TASK [create VPC in LDN] **********************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "vpc": {}}
+TASK [create VPC in LDN] **************************************************************
+changed: [localhost] => changed=true
+  vpc: {}
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "63c3dbe120d9e73a7beb64a1889466c045f4e006", "dest": "./logging/vpc1_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "1acfaa8cf926efb24f8442cb94b04e29", "mode": "0664", "owner": "vagrant", "size": 36, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647573477.1191187-51824-18563169702165/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: 63c3dbe120d9e73a7beb64a1889466c045f4e006
+  dest: ./logging/vpc1_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: 1acfaa8cf926efb24f8442cb94b04e29
+  mode: '0664'
+  owner: vagrant
+  size: 36
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576571.3597317-54834-210988277456010/source
+  state: file
+  uid: 1000
 
-TASK [copy] ***********************************************************************************************************************************************************************
-changed: [localhost] => {"changed": true, "checksum": "63c3dbe120d9e73a7beb64a1889466c045f4e006", "dest": "./logging/vpc2_info.yaml", "gid": 1000, "group": "vagrant", "md5sum": "1acfaa8cf926efb24f8442cb94b04e29", "mode": "0664", "owner": "vagrant", "size": 36, "src": "/home/vagrant/.ansible/tmp/ansible-tmp-1647573477.5414917-51866-104883262214699/source", "state": "file", "uid": 1000}
+TASK [copy] ***************************************************************************
+changed: [localhost] => changed=true
+  checksum: 63c3dbe120d9e73a7beb64a1889466c045f4e006
+  dest: ./logging/vpc2_info.yaml
+  gid: 1000
+  group: vagrant
+  md5sum: 1acfaa8cf926efb24f8442cb94b04e29
+  mode: '0664'
+  owner: vagrant
+  size: 36
+  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576571.7859633-54876-141176129989057/source
+  state: file
+  uid: 1000
 
-PLAY RECAP ************************************************************************************************************************************************************************
+PLAY RECAP ****************************************************************************
 localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ######### OUTPUT #################
@@ -184,18 +326,13 @@ vagrant ansible-workspace (dev) $ aws_vpc
         "name": null
     },
     {
-        "id": "vpc-0c249e5a2e4ba0b44",
-        "cidr": "172.20.1.0/24",
+        "id": "vpc-02492f230cf64d2fd",
+        "cidr": "172.20.30.0/24",
         "name": "vpc_syd0002"
     }
 ]
 vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
 [
-    {
-        "id": "vpc-0d6a88accb9536267",
-        "cidr": "172.19.2.0/24",
-        "name": "vpc_ldn0002"
-    },
     {
         "id": "vpc-03143662b677b4758",
         "cidr": "172.31.0.0/16",
