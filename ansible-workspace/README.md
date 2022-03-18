@@ -20,3 +20,6 @@ ansible-playbook playbook-deploy.yaml -v -e state=absent
 aws_vpc
 aws_vpc --region eu-west-2
 ```
+
+## Changelog
+ansible_definition-changelog.txt
