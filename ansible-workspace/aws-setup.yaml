@@ -1,0 +1,13 @@
+#localhost vars
+---
+global:
+  regionpri: ap-southeast-2
+  regionsec: eu-west-2
+
+vpc1:
+  name: vpc_syd0002
+  prefix: 172.20.30.0/24
+
+vpc2:
+  name: vpc_ldn0002
+  prefix: 172.19.30.0/24

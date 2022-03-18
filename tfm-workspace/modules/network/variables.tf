@@ -2,7 +2,7 @@
 
 
 variable "VPC_cidrblock" {
-  default = "10.0.0.0/16"
+  default = "10.111.0.0/16"
 }
 
 variable "enable_dns_support" {
