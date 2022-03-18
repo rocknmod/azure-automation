@@ -10,22 +10,22 @@ Regions presented:
 
 ## Create a single object (VPC)
 
-I have created a single object VPC using Ansible.
+I have created a single object VPC using Terraform.
 
 Execute in CLI directory
 
 ```
-ansible-playbook playbook-deploy.yaml -v
+terraform apply
 aws_vpc
 aws_vpc --region eu-west-2
-vim aws-setup.yaml #Update attributes
-ansible-playbook playbook-deploy.yaml -v
+vim  #Update attributes
+terraform apply
 aws_vpc
 aws_vpc --region eu-west-2
-ansible-playbook playbook-deploy.yaml -v -e state=absent
+terraform destroy -v -e state=absent
 aws_vpc
 aws_vpc --region eu-west-2
 ```
 
 ## Changelog
-ansible_definition-changelog.txt
+terraform_definition-changelog.txt
