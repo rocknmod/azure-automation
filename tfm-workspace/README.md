@@ -22,7 +22,7 @@ vim  #Update attributes
 terraform apply
 aws_vpc
 aws_vpc --region eu-west-2
-terraform destroy -v -e state=absent
+terraform destroy
 aws_vpc
 aws_vpc --region eu-west-2
 ```
