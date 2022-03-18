@@ -2,6 +2,10 @@ This is the Ansible workspace for AWS.
 
 # Ansible Automation Demo Script for this exercise
 
+Regions presented:
+- default region is ap-southeast-2
+- alternate region is eu-west-2
+
 ## Create a single object (VPC)
 
 I have created a single object VPC using Ansible.
