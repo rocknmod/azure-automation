@@ -18,7 +18,7 @@ Execute in CLI directory
 terraform apply
 aws_vpc
 aws_vpc --region eu-west-2
-vim network.tf #Update attributes
+vim module/network/variables.tf #Update prefix
 terraform apply
 aws_vpc
 aws_vpc --region eu-west-2
