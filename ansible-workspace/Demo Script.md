@@ -14,8 +14,7 @@ vim aws-setup.yaml #Update attributes
 ansible-playbook playbook-deploy.yaml -v
 aws_vpc
 aws_vpc --region eu-west-2
-ansible-playbook playbook-deploy.yaml -v -e state=abs
-ent
+ansible-playbook playbook-deploy.yaml -v -e state=absent
 aws_vpc
 aws_vpc --region eu-west-2
 ```
