@@ -32,4 +32,4 @@ resource "azurerm_virtual_network" "tf_vnet_ldn" {
   address_space             = var.network_ip
 }
 
-#end of VPC resource
+#end of RG resource
