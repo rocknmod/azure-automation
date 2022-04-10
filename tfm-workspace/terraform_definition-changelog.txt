@@ -1,70 +1,57 @@
 ###########################################################
-#########	Create new VPC in 2 regions         #######
+#########	Create new RG and Vnet in 2 regions     #######
 ###########################################################
 
-vagrant tfm-workspace (dev) $ terraform apply
+PS /home/remy/azure-automation/tfm-workspace> terraform apply
 
-Terraform used the selected providers to generate the following execution plan.
-Resource actions are indicated with the following symbols:
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
 
-  # module.network.aws_vpc.vpc_ldn0001 will be created
-  + resource "aws_vpc" "vpc_ldn0001" {
-      + arn                                  = (known after apply)
-      + cidr_block                           = "10.0.0.0/16"
-      + default_network_acl_id               = (known after apply)
-      + default_route_table_id               = (known after apply)
-      + default_security_group_id            = (known after apply)
-      + dhcp_options_id                      = (known after apply)
-      + enable_classiclink                   = (known after apply)
-      + enable_classiclink_dns_support       = (known after apply)
-      + enable_dns_hostnames                 = true
-      + enable_dns_support                   = true
-      + id                                   = (known after apply)
-      + instance_tenancy                     = "default"
-      + ipv6_association_id                  = (known after apply)
-      + ipv6_cidr_block                      = (known after apply)
-      + ipv6_cidr_block_network_border_group = (known after apply)
-      + main_route_table_id                  = (known after apply)
-      + owner_id                             = (known after apply)
-      + tags                                 = {
-          + "Name" = "vpc_ldn0001"
-        }
-      + tags_all                             = {
-          + "Name" = "vpc_ldn0001"
-        }
+  # module.network-au.azurerm_resource_group.tf_rg_syd will be created
+  + resource "azurerm_resource_group" "tf_rg_syd" {
+      + id       = (known after apply)
+      + location = "australiaeast"
+      + name     = "trf_rg_syd"
     }
 
-  # module.network.aws_vpc.vpc_syd0001 will be created
-  + resource "aws_vpc" "vpc_syd0001" {
-      + arn                                  = (known after apply)
-      + cidr_block                           = "10.0.0.0/16"
-      + default_network_acl_id               = (known after apply)
-      + default_route_table_id               = (known after apply)
-      + default_security_group_id            = (known after apply)
-      + dhcp_options_id                      = (known after apply)
-      + enable_classiclink                   = (known after apply)
-      + enable_classiclink_dns_support       = (known after apply)
-      + enable_dns_hostnames                 = true
-      + enable_dns_support                   = true
-      + id                                   = (known after apply)
-      + instance_tenancy                     = "default"
-      + ipv6_association_id                  = (known after apply)
-      + ipv6_cidr_block                      = (known after apply)
-      + ipv6_cidr_block_network_border_group = (known after apply)
-      + main_route_table_id                  = (known after apply)
-      + owner_id                             = (known after apply)
-      + tags                                 = {
-          + "Name" = "vpc_syd0001"
-        }
-      + tags_all                             = {
-          + "Name" = "vpc_syd0001"
-        }
+  # module.network-au.azurerm_virtual_network.tf_vnet_syd will be created
+  + resource "azurerm_virtual_network" "tf_vnet_syd" {
+      + address_space       = [
+          + "172.19.0.0/17",
+        ]
+      + dns_servers         = (known after apply)
+      + guid                = (known after apply)
+      + id                  = (known after apply)
+      + location            = "australiaeast"
+      + name                = "vnet_syd0001"
+      + resource_group_name = "trf_rg_syd"
+      + subnet              = (known after apply)
     }
 
-Plan: 2 to add, 0 to change, 0 to destroy.
+  # module.network-uk.azurerm_resource_group.tf_rg_ldn will be created
+  + resource "azurerm_resource_group" "tf_rg_ldn" {
+      + id       = (known after apply)
+      + location = "uksouth"
+      + name     = "trf_rg_ldn"
+    }
+
+  # module.network-uk.azurerm_virtual_network.tf_vnet_ldn will be created
+  + resource "azurerm_virtual_network" "tf_vnet_ldn" {
+      + address_space       = [
+          + "172.19.0.0/17",
+        ]
+      + dns_servers         = (known after apply)
+      + guid                = (known after apply)
+      + id                  = (known after apply)
+      + location            = "uksouth"
+      + name                = "vnet_ldn0001"
+      + resource_group_name = "trf_rg_ldn"
+      + subnet              = (known after apply)
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -72,130 +59,211 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-module.network.aws_vpc.vpc_syd0001: Creating...
-module.network.aws_vpc.vpc_ldn0001: Creating...
-module.network.aws_vpc.vpc_syd0001: Still creating... [10s elapsed]
-module.network.aws_vpc.vpc_syd0001: Creation complete after 11s [id=vpc-0636a0f563b3515b3]
-module.network.aws_vpc.vpc_ldn0001: Still creating... [10s elapsed]
-module.network.aws_vpc.vpc_ldn0001: Creation complete after 17s [id=vpc-0c59ce554a414b997]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Creating...
+module.network-au.azurerm_resource_group.tf_rg_syd: Creating...
+module.network-au.azurerm_resource_group.tf_rg_syd: Creation complete after 2s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Creation complete after 2s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Creating...
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Creating...
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Creation complete after 8s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Still creating... [10s elapsed]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Creation complete after 13s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
 
-Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
-
-
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 ######## OUTPUT ############
 
-vagrant tfm-workspace (dev) $ aws_vpc
+PS /home/remy/azure-automation/tfm-workspace> az group list
 [
-    {
-        "id": "vpc-08e83369b097b85f2",
-        "cidr": "172.31.0.0/16",
-        "name": null
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "trf_rg_ldn",
+    "properties": {
+      "provisioningState": "Succeeded"
     },
-    {
-        "id": "vpc-0636a0f563b3515b3",
-        "cidr": "10.0.0.0/16",
-        "name": "vpc_syd0001"
-    }
+    "tags": {},
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "trf_rg_syd",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": {},
+    "type": "Microsoft.Resources/resourceGroups"
+  }
 ]
-vagrant tfm-workspace (dev) $ aws_vpc --region eu-west-2
+PS /home/remy/azure-automation/tfm-workspace> az network vnet list
 [
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "172.19.0.0/17"
+      ]
     },
-    {
-        "id": "vpc-0c59ce554a414b997",
-        "cidr": "10.0.0.0/16",
-        "name": "vpc_ldn0001"
-    }
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": {
+      "dnsServers": []
+    },
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"504eb239-5dc9-4e6a-8eb2-825271a4b9be\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001",
+    "ipAllocations": null,
+    "location": "australiaeast",
+    "name": "vnet_syd0001",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "trf_rg_syd",
+    "resourceGuid": "c6f33da0-c25d-4113-904d-467465b36377",
+    "subnets": [],
+    "tags": {},
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  },
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "172.19.0.0/17"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": {
+      "dnsServers": []
+    },
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"786bd062-7951-4ccf-a9ee-92f0cad597a1\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001",
+    "ipAllocations": null,
+    "location": "uksouth",
+    "name": "vnet_ldn0001",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "trf_rg_ldn",
+    "resourceGuid": "fd607298-1cbc-4b4e-87c7-9b33c4bf6902",
+    "subnets": [],
+    "tags": {},
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  }
 ]
 
 ###########################################################
-#######     Change prefix for existing VPC  	  #########
+#######     Change subnet for existing Vnet  	    #########
 ###########################################################
 
-vim modules/network/variables.tf
-# variables.tf for network.tf module
+S /home/remy/azure-automation/tfm-workspace> terraform apply
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn]
+module.network-au.azurerm_resource_group.tf_rg_syd: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # module.network-au.azurerm_resource_group.tf_rg_syd has changed
+  ~ resource "azurerm_resource_group" "tf_rg_syd" {
+        id       = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd"
+        name     = "trf_rg_syd"
+      + tags     = {}
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.network-au.azurerm_virtual_network.tf_vnet_syd has changed
+  ~ resource "azurerm_virtual_network" "tf_vnet_syd" {
+        id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001"
+        name                    = "vnet_syd0001"
+      + tags                    = {}
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.network-uk.azurerm_resource_group.tf_rg_ldn has changed
+  ~ resource "azurerm_resource_group" "tf_rg_ldn" {
+        id       = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn"
+        name     = "trf_rg_ldn"
+      + tags     = {}
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.network-uk.azurerm_virtual_network.tf_vnet_ldn has changed
+  ~ resource "azurerm_virtual_network" "tf_vnet_ldn" {
+        id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001"
+        name                    = "vnet_ldn0001"
+      + tags                    = {}
+        # (7 unchanged attributes hidden)
+    }
 
 
-variable "VPC_cidrblock" {
-  default = "10.111.0.0/16"
-}
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to undo or respond
+to these changes.
 
-variable "enable_dns_support" {
-  type    = bool
-  default = true
-}
-
-variable "enable_dns_hostnames" {
-  type    = bool
-  default = true
-}
-
-# end of variables
-
-
-
-vagrant tfm-workspace (dev) $ terraform apply
-module.network.aws_vpc.vpc_syd0001: Refreshing state... [id=vpc-0636a0f563b3515b3]
-module.network.aws_vpc.vpc_ldn0001: Refreshing state... [id=vpc-0c59ce554a414b997]
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
--/+ destroy and then create replacement
+  ~ update in-place
 
 Terraform will perform the following actions:
 
-  # module.network.aws_vpc.vpc_ldn0001 must be replaced
--/+ resource "aws_vpc" "vpc_ldn0001" {
-      ~ arn                                  = "arn:aws:ec2:eu-west-2:048336976279:vpc/vpc-0c59ce554a414b997" -> (known after apply)
-      - assign_generated_ipv6_cidr_block     = false -> null
-      ~ cidr_block                           = "10.0.0.0/16" -> "10.111.0.0/16" # forces replacement
-      ~ default_network_acl_id               = "acl-0c58fd8208654b1bd" -> (known after apply)
-      ~ default_route_table_id               = "rtb-082ce93c5b08ae53b" -> (known after apply)
-      ~ default_security_group_id            = "sg-073285626fdc73a54" -> (known after apply)
-      ~ dhcp_options_id                      = "dopt-0ae772ada40e57940" -> (known after apply)
-      ~ enable_classiclink                   = false -> (known after apply)
-      ~ enable_classiclink_dns_support       = false -> (known after apply)
-      ~ id                                   = "vpc-0c59ce554a414b997" -> (known after apply)
-      + ipv6_association_id                  = (known after apply)
-      + ipv6_cidr_block                      = (known after apply)
-      + ipv6_cidr_block_network_border_group = (known after apply)
-      - ipv6_netmask_length                  = 0 -> null
-      ~ main_route_table_id                  = "rtb-082ce93c5b08ae53b" -> (known after apply)
-      ~ owner_id                             = "048336976279" -> (known after apply)
-        tags                                 = {
-            "Name" = "vpc_ldn0001"
-        }
-        # (4 unchanged attributes hidden)
+  # module.network-au.azurerm_virtual_network.tf_vnet_syd will be updated in-place
+  ~ resource "azurerm_virtual_network" "tf_vnet_syd" {
+      ~ address_space           = [
+          - "172.19.0.0/17",
+          + "10.100.0.0/16",
+        ]
+        id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001"
+        name                    = "vnet_syd0001"
+        tags                    = {}
+        # (6 unchanged attributes hidden)
     }
 
-  # module.network.aws_vpc.vpc_syd0001 must be replaced
--/+ resource "aws_vpc" "vpc_syd0001" {
-      ~ arn                                  = "arn:aws:ec2:ap-southeast-2:048336976279:vpc/vpc-0636a0f563b3515b3" -> (known after apply)
-      - assign_generated_ipv6_cidr_block     = false -> null
-      ~ cidr_block                           = "10.0.0.0/16" -> "10.111.0.0/16" # forces replacement
-      ~ default_network_acl_id               = "acl-0d2d9f025c32b2593" -> (known after apply)
-      ~ default_route_table_id               = "rtb-07ff2a3203121b0c8" -> (known after apply)
-      ~ default_security_group_id            = "sg-01c28828d3d696757" -> (known after apply)
-      ~ dhcp_options_id                      = "dopt-0f89849eddd5cdc17" -> (known after apply)
-      ~ enable_classiclink                   = false -> (known after apply)
-      ~ enable_classiclink_dns_support       = false -> (known after apply)
-      ~ id                                   = "vpc-0636a0f563b3515b3" -> (known after apply)
-      + ipv6_association_id                  = (known after apply)
-      + ipv6_cidr_block                      = (known after apply)
-      + ipv6_cidr_block_network_border_group = (known after apply)
-      - ipv6_netmask_length                  = 0 -> null
-      ~ main_route_table_id                  = "rtb-07ff2a3203121b0c8" -> (known after apply)
-      ~ owner_id                             = "048336976279" -> (known after apply)
-        tags                                 = {
-            "Name" = "vpc_syd0001"
-        }
-        # (4 unchanged attributes hidden)
+  # module.network-uk.azurerm_virtual_network.tf_vnet_ldn will be updated in-place
+  ~ resource "azurerm_virtual_network" "tf_vnet_ldn" {
+      ~ address_space           = [
+          - "172.19.0.0/17",
+          + "10.115.0.0/16",
+        ]
+        id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001"
+        name                    = "vnet_ldn0001"
+        tags                    = {}
+        # (6 unchanged attributes hidden)
     }
 
-Plan: 2 to add, 0 to change, 2 to destroy.
+Plan: 0 to add, 2 to change, 0 to destroy.
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
@@ -203,116 +271,190 @@ Do you want to perform these actions?
 
   Enter a value: yes
 
-module.network.aws_vpc.vpc_syd0001: Destroying... [id=vpc-0636a0f563b3515b3]
-module.network.aws_vpc.vpc_syd0001: Destruction complete after 0s
-module.network.aws_vpc.vpc_syd0001: Creating...
-module.network.aws_vpc.vpc_ldn0001: Destroying... [id=vpc-0c59ce554a414b997]
-module.network.aws_vpc.vpc_ldn0001: Destruction complete after 0s
-module.network.aws_vpc.vpc_ldn0001: Creating...
-module.network.aws_vpc.vpc_syd0001: Still creating... [10s elapsed]
-module.network.aws_vpc.vpc_syd0001: Creation complete after 12s [id=vpc-0efc6f3c90e42fe64]
-module.network.aws_vpc.vpc_ldn0001: Still creating... [10s elapsed]
-module.network.aws_vpc.vpc_ldn0001: Creation complete after 17s [id=vpc-0f2808d6ae94ae2cd]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Modifying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Modifying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Modifications complete after 4s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Modifications complete after 5s [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
 
-Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+Apply complete! Resources: 0 added, 2 changed, 0 destroyed.
+
 
 
 ######## OUTPUT ############
 
-vagrant tfm-workspace (dev) $ aws_vpc
+PS /home/remy/azure-automation/tfm-workspace> az group list                           
 [
-    {
-        "id": "vpc-08e83369b097b85f2",
-        "cidr": "172.31.0.0/16",
-        "name": null
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "trf_rg_ldn",
+    "properties": {
+      "provisioningState": "Succeeded"
     },
-    {
-        "id": "vpc-0efc6f3c90e42fe64",
-        "cidr": "10.111.0.0/16",
-        "name": "vpc_syd0001"
-    }
+    "tags": {},
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "trf_rg_syd",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": {},
+    "type": "Microsoft.Resources/resourceGroups"
+  }
 ]
-vagrant tfm-workspace (dev) $ aws_vpc --region eu-west-2
+PS /home/remy/azure-automation/tfm-workspace> az network vnet list 
 [
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.100.0.0/16"
+      ]
     },
-    {
-        "id": "vpc-0f2808d6ae94ae2cd",
-        "cidr": "10.111.0.0/16",
-        "name": "vpc_ldn0001"
-    }
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": {
+      "dnsServers": []
+    },
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"d26e8e73-40a6-4bb2-b9eb-fcab5572f43d\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001",
+    "ipAllocations": null,
+    "location": "australiaeast",
+    "name": "vnet_syd0001",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "trf_rg_syd",
+    "resourceGuid": "c6f33da0-c25d-4113-904d-467465b36377",
+    "subnets": [],
+    "tags": {},
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  },
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "10.115.0.0/16"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": {
+      "dnsServers": []
+    },
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"301eb43c-cacb-41f5-af66-fb58863d699d\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001",
+    "ipAllocations": null,
+    "location": "uksouth",
+    "name": "vnet_ldn0001",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "trf_rg_ldn",
+    "resourceGuid": "fd607298-1cbc-4b4e-87c7-9b33c4bf6902",
+    "subnets": [],
+    "tags": {},
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  }
 ]
 
+###########################################################
+#######     Destroy existing RGs             	    #########
+###########################################################
 
-#################################################
-#######		Destroy VPC		#########
-#################################################
-
-vagrant tfm-workspace (dev) $ terraform destroy
-module.network.aws_vpc.vpc_syd0001: Refreshing state... [id=vpc-0efc6f3c90e42fe64]
-module.network.aws_vpc.vpc_ldn0001: Refreshing state... [id=vpc-0f2808d6ae94ae2cd]
+PS /home/remy/azure-automation/tfm-workspace> terraform destroy
+module.network-au.azurerm_resource_group.tf_rg_syd: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Refreshing state... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
 
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
   - destroy
 
 Terraform will perform the following actions:
 
-  # module.network.aws_vpc.vpc_ldn0001 will be destroyed
-  - resource "aws_vpc" "vpc_ldn0001" {
-      - arn                              = "arn:aws:ec2:eu-west-2:048336976279:vpc/vpc-0f2808d6ae94ae2cd" -> null
-      - assign_generated_ipv6_cidr_block = false -> null
-      - cidr_block                       = "10.111.0.0/16" -> null
-      - default_network_acl_id           = "acl-0391dd97a9de8c9ba" -> null
-      - default_route_table_id           = "rtb-05dd2840e1d301ea2" -> null
-      - default_security_group_id        = "sg-04a9c2bd4a44f636b" -> null
-      - dhcp_options_id                  = "dopt-0ae772ada40e57940" -> null
-      - enable_classiclink               = false -> null
-      - enable_classiclink_dns_support   = false -> null
-      - enable_dns_hostnames             = true -> null
-      - enable_dns_support               = true -> null
-      - id                               = "vpc-0f2808d6ae94ae2cd" -> null
-      - instance_tenancy                 = "default" -> null
-      - ipv6_netmask_length              = 0 -> null
-      - main_route_table_id              = "rtb-05dd2840e1d301ea2" -> null
-      - owner_id                         = "048336976279" -> null
-      - tags                             = {
-          - "Name" = "vpc_ldn0001"
-        } -> null
-      - tags_all                         = {
-          - "Name" = "vpc_ldn0001"
-        } -> null
+  # module.network-au.azurerm_resource_group.tf_rg_syd will be destroyed
+  - resource "azurerm_resource_group" "tf_rg_syd" {
+      - id       = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd" -> null
+      - location = "australiaeast" -> null
+      - name     = "trf_rg_syd" -> null
+      - tags     = {} -> null
     }
 
-  # module.network.aws_vpc.vpc_syd0001 will be destroyed
-  - resource "aws_vpc" "vpc_syd0001" {
-      - arn                              = "arn:aws:ec2:ap-southeast-2:048336976279:vpc/vpc-0efc6f3c90e42fe64" -> null
-      - assign_generated_ipv6_cidr_block = false -> null
-      - cidr_block                       = "10.111.0.0/16" -> null
-      - default_network_acl_id           = "acl-0ca560f0f40f717a5" -> null
-      - default_route_table_id           = "rtb-0f3f5f4d10de28a2e" -> null
-      - default_security_group_id        = "sg-0698fe095fa96f3eb" -> null
-      - dhcp_options_id                  = "dopt-0f89849eddd5cdc17" -> null
-      - enable_classiclink               = false -> null
-      - enable_classiclink_dns_support   = false -> null
-      - enable_dns_hostnames             = true -> null
-      - enable_dns_support               = true -> null
-      - id                               = "vpc-0efc6f3c90e42fe64" -> null
-      - instance_tenancy                 = "default" -> null
-      - ipv6_netmask_length              = 0 -> null
-      - main_route_table_id              = "rtb-0f3f5f4d10de28a2e" -> null
-      - owner_id                         = "048336976279" -> null
-      - tags                             = {
-          - "Name" = "vpc_syd0001"
-        } -> null
-      - tags_all                         = {
-          - "Name" = "vpc_syd0001"
-        } -> null
+  # module.network-au.azurerm_virtual_network.tf_vnet_syd will be destroyed
+  - resource "azurerm_virtual_network" "tf_vnet_syd" {
+      - address_space           = [
+          - "10.100.0.0/16",
+        ] -> null
+      - dns_servers             = [] -> null
+      - flow_timeout_in_minutes = 0 -> null
+      - guid                    = "c6f33da0-c25d-4113-904d-467465b36377" -> null
+      - id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001" -> null
+      - location                = "australiaeast" -> null
+      - name                    = "vnet_syd0001" -> null
+      - resource_group_name     = "trf_rg_syd" -> null
+      - subnet                  = [] -> null
+      - tags                    = {} -> null
     }
 
-Plan: 0 to add, 0 to change, 2 to destroy.
+  # module.network-uk.azurerm_resource_group.tf_rg_ldn will be destroyed
+  - resource "azurerm_resource_group" "tf_rg_ldn" {
+      - id       = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn" -> null
+      - location = "uksouth" -> null
+      - name     = "trf_rg_ldn" -> null
+      - tags     = {} -> null
+    }
+
+  # module.network-uk.azurerm_virtual_network.tf_vnet_ldn will be destroyed
+  - resource "azurerm_virtual_network" "tf_vnet_ldn" {
+      - address_space           = [
+          - "10.115.0.0/16",
+        ] -> null
+      - dns_servers             = [] -> null
+      - flow_timeout_in_minutes = 0 -> null
+      - guid                    = "fd607298-1cbc-4b4e-87c7-9b33c4bf6902" -> null
+      - id                      = "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001" -> null
+      - location                = "uksouth" -> null
+      - name                    = "vnet_ldn0001" -> null
+      - resource_group_name     = "trf_rg_ldn" -> null
+      - subnet                  = [] -> null
+      - tags                    = {} -> null
+    }
+
+Plan: 0 to add, 0 to change, 4 to destroy.
 
 Do you really want to destroy all resources?
   Terraform will destroy all your managed infrastructure, as shown above.
@@ -320,30 +462,66 @@ Do you really want to destroy all resources?
 
   Enter a value: yes
 
-module.network.aws_vpc.vpc_syd0001: Destroying... [id=vpc-0efc6f3c90e42fe64]
-module.network.aws_vpc.vpc_syd0001: Destruction complete after 0s
-module.network.aws_vpc.vpc_ldn0001: Destroying... [id=vpc-0f2808d6ae94ae2cd]
-module.network.aws_vpc.vpc_ldn0001: Destruction complete after 1s
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn/providers/Microsoft.Network/virtualNetworks/vnet_ldn0001]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd/providers/Microsoft.Network/virtualNetworks/vnet_syd0001]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-...t.Network/virtualNetworks/vnet_ldn0001, 10s elapsed]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-...t.Network/virtualNetworks/vnet_syd0001, 10s elapsed]
+module.network-au.azurerm_virtual_network.tf_vnet_syd: Destruction complete after 11s
+module.network-au.azurerm_resource_group.tf_rg_syd: Destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd]
+module.network-uk.azurerm_virtual_network.tf_vnet_ldn: Destruction complete after 12s
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 10s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 10s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 20s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 20s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 30s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 30s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 40s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 40s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 50s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 50s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 1m0s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m0s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_syd, 1m10s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m10s elapsed]
+module.network-au.azurerm_resource_group.tf_rg_syd: Destruction complete after 1m19s
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m20s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m30s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m40s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Still destroying... [id=/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/trf_rg_ldn, 1m50s elapsed]
+module.network-uk.azurerm_resource_group.tf_rg_ldn: Destruction complete after 1m52s
 
-Destroy complete! Resources: 2 destroyed.
+Destroy complete! Resources: 4 destroyed.
+
 
 
 ######## OUTPUT ############
 
-vagrant tfm-workspace (dev) $ aws_vpc
+
+PS /home/remy/azure-automation/tfm-workspace> az group list           
 [
-    {
-        "id": "vpc-08e83369b097b85f2",
-        "cidr": "172.31.0.0/16",
-        "name": null
-    }
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
 ]
-vagrant tfm-workspace (dev) $ aws_vpc --region eu-west-2
-[
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
-    }
-]
-vagrant tfm-workspace (dev) $
+PS /home/remy/azure-automation/tfm-workspace> az network vnet list                
+[]
