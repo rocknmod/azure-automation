@@ -1,20 +1,24 @@
 # Terraform main file defines providers on 2 regions and modules
-# calling module for deploying network and ec2 instance
+# calling module for deploying network and VM instance
 
-provider "aws" {
+provider "azurerm" {
+  features {}
   profile = var.profile
-  region  = var.region-master
-  alias   = "region-master"
+  location  = var.region-pri
+  alias   = "region-pri"
 }
-provider "aws" {
+provider "azurerm" {
+  features {}
   profile = var.profile
-  region  = var.region-worker
-  alias   = "region-worker"
+  location  = var.region-sec
+  alias   = "region-sec"
 }
 
 module "network" {
   source = "./modules/network"
   providers = {
-    aws.sec = aws.region-worker
+    azurerm.sec = azurerm.region-sec
   }
+  location = var.location
+  rg_name  = var.rg_name
 }
