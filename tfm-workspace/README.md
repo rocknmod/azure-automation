@@ -15,9 +15,14 @@ I have created a ressource group and Vnet objects Vnet using Terraform.
 Execute in CLI directory
 
 ```
+terraform apply
 az group list
 az network vnet list
+vim module/network/variables.tf #Update Subnet
 terraform apply
+az group list
+az network vnet list
+terraform destroy
 az group list
 az network vnet list
 
