@@ -2,37 +2,48 @@
 # Set up alternate providers for network module
 terraform {
   required_providers {
-    aws = {
-      source                = "hashicorp/aws"
-      version               = ">= 2.7.0"
-      configuration_aliases = [aws.sec]
+    azurerm = {
+      source                = "hashicorp/azurerm"
+      version               = ">= 3.0.0"
+      configuration_aliases = [azurerm.sec]
     }
   }
 }
 
 ###############
-#create the VPCs
+#create the Ressource Group
 ###############
 
-# Create VPC in default ap-southeast-2
-
-resource "aws_vpc" "vpc_syd0001" {
-  cidr_block           = var.VPC_cidrblock
-  enable_dns_support   = var.enable_dns_support
-  enable_dns_hostnames = var.enable_dns_hostnames
-  tags = { Name = "vpc_syd0001"
-  }
+resource "azurerm_resource_group" "tf_rg_syd" {
+	name = var.rg_name
+	location = var.location
 }
 
-# Create VPC in alernate eu-west-2
+resource "azurerm_resource_group" "tf_rg_ldn" {
+        name = var.rg_name
+        location = azurerm.sec
+}
 
-resource "aws_vpc" "vpc_ldn0001" {
-  provider             = aws.sec
-  cidr_block           = var.VPC_cidrblock
-  enable_dns_support   = var.enable_dns_support
-  enable_dns_hostnames = var.enable_dns_hostnames
-  tags = { Name = "vpc_ldn0001"
-  }
+###############
+#create the virtual network
+###############
+
+# Create virtual network in default Australia East
+
+resource "azurerm_virtual_network" "tf_vnet_syd" {
+  name = "vpc_syd0001"
+  resource_group_name = azurerm_resource_group.tf_rg_syd.name
+  location = azurerm_resource_group.tf_rg_syd.location
+  address = var.network_ip
+}
+
+# Create virtual network in alernate UK South
+
+resource "azurerm_virtual_network" "tf_vnet_ldn" {
+  name = "vpc_ldn0001"
+  resource_group_name = azurerm_resource_group.tf_rg_ldn.name
+  location = azurerm_resource_group.tf_rg_ldn.location
+  address = var.network_ip
 }
 
 #end of VPC resource

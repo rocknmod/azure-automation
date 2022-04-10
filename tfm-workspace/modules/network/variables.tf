@@ -1,18 +1,22 @@
 # variables.tf for network.tf module
 
-
-variable "VPC_cidrblock" {
-  default = "10.111.0.0/16"
+variable "location" {
+	description = "Azure location"
+	type = string
+	default = null
 }
 
-variable "enable_dns_support" {
-  type    = bool
-  default = true
+variable "rg_name" {
+	type = string
+	default = null
 }
 
-variable "enable_dns_hostnames" {
-  type    = bool
-  default = true
+variable "network_name" {
+	type = string
+	default = "VNet"
 }
 
-# end of variables
+variable "network_ip" {
+	type = list(string)
+	default = ["172.19.0.0/17"]
+}
