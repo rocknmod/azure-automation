@@ -5,7 +5,12 @@ provider "azurerm" {
   features {}
 }
 
-module "network" {
+module "network-au" {
   source = "./modules/network"
-  location  = var.location
+  location  = var.region_pri
+}
+
+module "network-uk" {
+  source = "./modules/network-uk"
+  location  = var.region_sec
 }
