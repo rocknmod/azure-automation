@@ -15,13 +15,13 @@ terraform {
 ###############
 
 resource "azurerm_resource_group" "tf_rg_syd" {
-	name = var.rg_name
-	location = var.location
+	name = var.rg_name_syd
+	location = var.region-pri
 }
 
 resource "azurerm_resource_group" "tf_rg_ldn" {
-        name = var.rg_name
-        location = azurerm.sec
+        name = var.rg_name_ldn
+        location = var.region-sec
 }
 
 ###############
