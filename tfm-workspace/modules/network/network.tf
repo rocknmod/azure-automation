@@ -15,13 +15,13 @@ terraform {
 ###############
 
 resource "azurerm_resource_group" "tf_rg_syd" {
-	name = var.rg_name_syd
-	location = var.region-pri
+  name     = var.rg_name_syd
+  location = var.region-pri
 }
 
 resource "azurerm_resource_group" "tf_rg_ldn" {
-        name = var.rg_name_ldn
-        location = var.region-sec
+  name     = var.rg_name_ldn
+  location = var.region-sec
 }
 
 ###############
@@ -31,19 +31,19 @@ resource "azurerm_resource_group" "tf_rg_ldn" {
 # Create virtual network in default Australia East
 
 resource "azurerm_virtual_network" "tf_vnet_syd" {
-  name = "vpc_syd0001"
+  name                = "vpc_syd0001"
   resource_group_name = azurerm_resource_group.tf_rg_syd.name
-  location = azurerm_resource_group.tf_rg_syd.location
-  address = var.network_ip
+  location            = azurerm_resource_group.tf_rg_syd.location
+  address             = var.network_ip
 }
 
 # Create virtual network in alernate UK South
 
 resource "azurerm_virtual_network" "tf_vnet_ldn" {
-  name = "vpc_ldn0001"
+  name                = "vpc_ldn0001"
   resource_group_name = azurerm_resource_group.tf_rg_ldn.name
-  location = azurerm_resource_group.tf_rg_ldn.location
-  address = var.network_ip
+  location            = azurerm_resource_group.tf_rg_ldn.location
+  address             = var.network_ip
 }
 
 #end of VPC resource

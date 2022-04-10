@@ -3,13 +3,13 @@
 
 provider "azurerm" {
   features {}
-  location  = var.region-pri
-  alias   = "region-pri"
+  location = var.region-pri
+  alias    = "region-pri"
 }
 provider "azurerm" {
   features {}
-  location  = var.region-sec
-  alias   = "region-sec"
+  location = var.region-sec
+  alias    = "region-sec"
 }
 
 module "network" {
@@ -17,8 +17,8 @@ module "network" {
   providers = {
     azurerm.sec = azurerm.region-sec
   }
-  region-pri = var.region-pri
+  region-pri  = var.region-pri
   region-sec  = var.region-sec
-  rg_name_ldn = var.rg_name_ldn  
+  rg_name_ldn = var.rg_name_ldn
   rg_name_syd = var.rg_name_syd
 }
