@@ -1,6 +1,6 @@
 ---
 - name: Create Azure Resource Group
   azure_rm_resourcegroup:
-    name: "{{ globaliau.resourcegroup }}"
+    name: "{{ globalau.resourcegroup }}"
     location: "{{ globalau.region }}"
     state: "{{ globalau.state }}"
