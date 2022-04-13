@@ -1,0 +1,18 @@
+# localhost vars
+---
+global:
+  region: australiaeast
+  resourcegroup: au_ansible_demo
+  state: "{{ state | default('present') }}"
+  admin_user: azure
+
+vnet:
+  name: VNET
+  cidr: 172.19.0.0/17
+  subnets:
+    public:
+      cidr: 172.19.1.0/24
+    private:
+      cidr: 172.19.2.0/24
+      rt: Private_RT
+      sg: internal-sg
