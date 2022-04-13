@@ -1,28 +1,28 @@
-This is the Ansible workspace for AWS.
+This is the Ansible workspace for Azure.
 
 # Ansible Automation Demo Script for this exercise
 
 Regions presented:
-- default region is ap-southeast-2
-- alternate region is eu-west-2
+- default region is Autralia East
+- alternate region is UK South
 
-## Create a single object (VPC)
+## Create a Ressource group with a Vnet
 
-I have created a single object VPC using Ansible.
+I have created a ressource group and Vnet objects Vnet using Ansible.
 
 Execute in CLI directory
 
 ```
 ansible-playbook playbook-deploy.yaml -v
-aws_vpc
-aws_vpc --region eu-west-2
-vim aws-setup.yaml #Update attributes
+az group list
+az network vnet list
+vim azure-setup.yaml #Update attributes
 ansible-playbook playbook-deploy.yaml -v
-aws_vpc
-aws_vpc --region eu-west-2
+az group list
+az network vnet list
 ansible-playbook playbook-deploy.yaml -v -e state=absent
-aws_vpc
-aws_vpc --region eu-west-2
+az group list
+az network vnet list
 ```
 
 ## Changelog
