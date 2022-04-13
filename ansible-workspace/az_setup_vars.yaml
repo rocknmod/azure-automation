@@ -1,0 +1,33 @@
+# localhost vars
+---
+globalau:
+  region: australiaeast
+  resourcegroup: au_rg_001
+  state: "{{ state | default('present') }}"
+
+globaluk:
+  region: uksouth
+  resourcegroup: uk_rg_001
+  state: "{{ state | default('present') }}"
+
+vnetau:
+  name: VNET
+  cidr: 192.168.0.0/17
+  subnets:
+    public:
+      cidr: 192.168.1.0/24
+    private:
+      cidr: 192.168.2.0/24
+      rt: Private_RT
+      sg: internal-sg
+
+vnetuk:
+  name: VNET
+  cidr: 172.19.0.0/17
+  subnets:
+    public:
+      cidr: 172.19.1.0/24
+    private:
+      cidr: 172.19.2.0/24
+      rt: Private_RT
+      sg: internal-sg
