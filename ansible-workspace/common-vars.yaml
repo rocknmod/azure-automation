@@ -1,4 +1,0 @@
---- 
-computed: 
-  logging: "{{ logging | default('./logging') }}"
-  state: "{{ state | default('present') }}"

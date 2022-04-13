@@ -1,0 +1,8 @@
+### create vnet
+---
+- name: create virtual network
+  azure_rm_virtualnetwork:
+    resource_group: "{{ globaluk.resourcegroup }}"
+    name: "{{ vnetuk.name }}"
+    address_prefixes_cidr: "{{ vnetuk.cidr }}"
+    state: "{{ globaluk.state }}"

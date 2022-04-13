@@ -7,7 +7,11 @@
   vars_files:
   - az_setup_vars.yaml
   tasks:
-  - import_tasks: tasks/vnet/create_rg.yaml
+  - import_tasks: tasks/AU/vnet/create_rg.yaml
     tags: [ rg ]
-  - import_tasks: tasks/vnet/create_vnet.yaml
+  - import_tasks: tasks/AU/vnet/create_vnet.yaml
+    tags: [ vnet ]
+  - import_tasks: tasks/UK/vnet/create_rg.yaml
+    tags: [ rg ]
+  - import_tasks: tasks/UK/vnet/create_vnet.yaml
     tags: [ vnet ]
