@@ -1,11 +1,13 @@
-#main file for setting up aws vpc
-
+#!/usr/bin/ansible-playbook
+#
+# Main Azure infrastructure deployment playbook
+#
 ---
 - hosts: localhost
   vars_files:
-  - "{{ aws_setup|default('aws-setup.yaml') }}"
-  - common-vars.yaml
-
+  - az_setup_vars.yaml
   tasks:
-  - include_tasks: tasks/vpc/create-vpc.yaml
-    tags: [ vpc ]
+  - import_tasks: tasks/vnet/create_rg.yaml
+    tags: [ rg ]
+  - import_tasks: tasks/vnet/create_vnet.yaml
+    tags: [ vnet ]
