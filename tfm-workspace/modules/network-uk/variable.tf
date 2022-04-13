@@ -35,5 +35,5 @@ variable "network_name" {
 
 variable "network_ip" {
   type    = list(string)
-  default = ["172.19.0.0/17"]
+  default = ["10.115.0.0/16"]
 }
