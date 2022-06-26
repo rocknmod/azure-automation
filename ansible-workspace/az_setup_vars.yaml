@@ -4,20 +4,22 @@ globalau:
   region: australiaeast
   resourcegroup: au_rg_001
   state: "{{ state | default('present') }}"
+  force_delete_nonempty: yes
 
 globaluk:
   region: uksouth
   resourcegroup: uk_rg_001
   state: "{{ state | default('present') }}"
+  force_delete_nonempty: yes
 
 vnetau:
   name: VNET
-  cidr: 192.168.0.0/17
+  cidr: 10.100.0.0/16
   subnets:
     public:
-      cidr: 192.168.1.0/24
+      cidr: 10.100.100.0/24
     private:
-      cidr: 192.168.2.0/24
+      cidr: 10.100.101.0/24
       rt: Private_RT
       sg: internal-sg
 

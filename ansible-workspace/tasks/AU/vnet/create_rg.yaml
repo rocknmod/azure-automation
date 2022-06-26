@@ -4,3 +4,4 @@
     name: "{{ globalau.resourcegroup }}"
     location: "{{ globalau.region }}"
     state: "{{ globalau.state }}"
+    force_delete_nonempty: "{{ globalau.force_delete_nonempty }}"
