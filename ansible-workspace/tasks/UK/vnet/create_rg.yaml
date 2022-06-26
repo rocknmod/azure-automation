@@ -4,3 +4,4 @@
     name: "{{ globaluk.resourcegroup }}"
     location: "{{ globaluk.region }}"
     state: "{{ globaluk.state }}"
+    force_delete_nonempty: "{{ globaluk.force_delete_nonempty }}"
