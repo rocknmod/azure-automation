@@ -680,6 +680,65 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
   }
 ]
 
+PS /home/remy/azure-automation/ansible-workspace> az network vnet list
+
+[
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "192.168.0.0/17",
+        "10.100.0.0/16"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": null,
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"d5430d3b-b338-4af3-923d-e8fc1ed7fcaa\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/au_rg_001/providers/Microsoft.Network/virtualNetworks/VNET",
+    "ipAllocations": null,
+    "location": "australiaeast",
+    "name": "VNET",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "au_rg_001",
+    "resourceGuid": "7ace287d-4f18-44d4-b342-c6653dd78061",
+    "subnets": [],
+    "tags": {},
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  },
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "172.19.0.0/17"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": null,
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"fff75924-255b-4d87-95ba-0206600909b8\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/uk_rg_001/providers/Microsoft.Network/virtualNetworks/VNET",
+    "ipAllocations": null,
+    "location": "uksouth",
+    "name": "VNET",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "uk_rg_001",
+    "resourceGuid": "1668a002-8a96-4c39-a61c-af5a3792b967",
+    "subnets": [],
+    "tags": null,
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  }
+]
 
 #################################################
 #######		Destroy VPC		#########
