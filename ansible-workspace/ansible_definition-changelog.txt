@@ -1075,7 +1075,3 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
 
 
 Note: In ansible the playbook is following the order of the tasks so it is always trying to check the AU Ressource group first and fails. Which means the UK Ressource group is not deleted. Terraform is easier to work with deployement and change to the build in a multi region environment.
-<<<<<<< HEAD
-
-=======
->>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
