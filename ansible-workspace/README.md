@@ -16,7 +16,7 @@ Execute in CLI directory
 ansible-playbook playbook-deploy.yaml -v
 az group list
 az network vnet list
-vim azure-setup.yaml #Update attributes
+vim az_setup_vars.yaml #Update attributes
 ansible-playbook playbook-deploy.yaml -v
 az group list
 az network vnet list

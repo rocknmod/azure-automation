@@ -263,6 +263,7 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     "name": "uk_rg_001",
     "properties": {
       "provisioningState": "Succeeded"
+<<<<<<< HEAD
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
@@ -299,6 +300,44 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
+=======
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/au_rg_001",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "au_rg_001",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
   }
 ]
 PS /home/remy/azure-automation/ansible-workspace> az network vnet list
@@ -308,6 +347,7 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
       "addressPrefixes": [
         "192.168.0.0/17"
       ]
+<<<<<<< HEAD
     },
     "bgpCommunities": null,
     "ddosProtectionPlan": null,
@@ -335,6 +375,8 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
       "addressPrefixes": [
         "172.19.0.0/17"
       ]
+=======
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
     },
     "bgpCommunities": null,
     "ddosProtectionPlan": null,
@@ -342,6 +384,36 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
     "enableDdosProtection": false,
     "enableVmProtection": null,
     "encryption": null,
+<<<<<<< HEAD
+=======
+    "etag": "W/\"9a272f55-5d32-46a3-a184-04967479d145\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/au_rg_001/providers/Microsoft.Network/virtualNetworks/VNET",
+    "ipAllocations": null,
+    "location": "australiaeast",
+    "name": "VNET",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "au_rg_001",
+    "resourceGuid": "7ace287d-4f18-44d4-b342-c6653dd78061",
+    "subnets": [],
+    "tags": null,
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  },
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "172.19.0.0/17"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": null,
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
     "etag": "W/\"fff75924-255b-4d87-95ba-0206600909b8\"",
     "extendedLocation": null,
     "flowTimeoutInMinutes": null,
@@ -663,6 +735,7 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     "name": "NetworkWatcherRG",
     "properties": {
       "provisioningState": "Succeeded"
+<<<<<<< HEAD
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
@@ -677,6 +750,22 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
+=======
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/au_rg_001",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "au_rg_001",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
   }
 ]
 
@@ -905,6 +994,7 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     "name": "uk_rg_001",
     "properties": {
       "provisioningState": "Succeeded"
+<<<<<<< HEAD
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
@@ -916,11 +1006,27 @@ PS /home/remy/azure-automation/ansible-workspace> az group list
     "name": "cloud-shell-storage-southeastasia",
     "properties": {
       "provisioningState": "Succeeded"
+=======
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
     },
     "tags": null,
     "type": "Microsoft.Resources/resourceGroups"
   },
   {
+<<<<<<< HEAD
+=======
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
     "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
     "location": "australiaeast",
     "managedBy": null,
@@ -969,4 +1075,7 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
 
 
 Note: In ansible the playbook is following the order of the tasks so it is always trying to check the AU Ressource group first and fails. Which means the UK Ressource group is not deleted. Terraform is easier to work with deployement and change to the build in a multi region environment.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 98eb7bfc5846e136a60873a009273c0dd6406f7d
