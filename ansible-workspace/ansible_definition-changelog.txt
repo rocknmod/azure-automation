@@ -1,6 +1,6 @@
-###########################################################
+#################################################################
 #########	Create new Ressource Groups in 2 regions  #######
-###########################################################
+#################################################################
 
 PS /home/remy/azure-automation/ansible-workspace> ansible-playbook ./playbook-deploy.yaml  -vvv       
 [DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current
