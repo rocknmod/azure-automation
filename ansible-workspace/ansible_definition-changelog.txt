@@ -1,5 +1,5 @@
 ###########################################################
-#########	Create new VPC in 2 regions         #######
+#########	Create new Ressource Groups in 2 regions  #######
 ###########################################################
 
 PS /home/remy/azure-automation/ansible-workspace> ansible-playbook ./playbook-deploy.yaml  -vvv       
@@ -360,7 +360,7 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
 ]
 
 ###########################################################
-#######     Changed vnet for existing AU VPC	  #########
+#######     Changed vnet of the existing AU RG	  #########
 ###########################################################
 
 vagrant ansible-workspace (dev) $ vim aws-setup.yaml
@@ -744,76 +744,228 @@ PS /home/remy/azure-automation/ansible-workspace> az network vnet list
 #######		Destroy VPC		#########
 #################################################
 
-vagrant ansible-workspace (dev) $ ansible-playbook playbook-deploy.yaml -v -e state=absent
-Using /home/vagrant/AWS/aws-automation/ansible-workspace/ansible.cfg as config file
+PS /home/remy/azure-automation/ansible-workspace> ansible-playbook playbook-deploy.yaml -vvv -e state=absent
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.7.3 (default, Jan 22 2021, 20:04:44) [GCC 8.3.0]. 
+This feature will be removed from ansible-core in version 2.12. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
+ansible-playbook [core 2.11.10] 
+  config file = /home/remy/azure-automation/ansible-workspace/ansible.cfg
+  configured module search path = ['/home/remy/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/remy/.local/lib/python3.7/site-packages/ansible
+  ansible collection location = /home/remy/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/remy/.local/bin/ansible-playbook
+  python version = 3.7.3 (default, Jan 22 2021, 20:04:44) [GCC 8.3.0]
+  jinja version = 3.1.1
+  libyaml = True
+Using /home/remy/azure-automation/ansible-workspace/ansible.cfg as config file
+host_list declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+script declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+auto declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+yaml declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+ini declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+toml declined parsing /etc/ansible/hosts as it did not pass its verify_file() method
+[WARNING]: No inventory was parsed, only implicit localhost is available
+Read vars_file 'az_setup_vars.yaml'
+statically imported: /home/remy/azure-automation/ansible-workspace/tasks/AU/vnet/create_rg.yaml
+redirecting (type: modules) ansible.builtin.azure_rm_resourcegroup to azure.azcollection.azure_rm_resourcegroup
+Read vars_file 'az_setup_vars.yaml'
+statically imported: /home/remy/azure-automation/ansible-workspace/tasks/AU/vnet/create_vnet.yaml
+redirecting (type: modules) ansible.builtin.azure_rm_virtualnetwork to azure.azcollection.azure_rm_virtualnetwork
+Read vars_file 'az_setup_vars.yaml'
+statically imported: /home/remy/azure-automation/ansible-workspace/tasks/UK/vnet/create_rg.yaml
+redirecting (type: modules) ansible.builtin.azure_rm_resourcegroup to azure.azcollection.azure_rm_resourcegroup
+Read vars_file 'az_setup_vars.yaml'
+statically imported: /home/remy/azure-automation/ansible-workspace/tasks/UK/vnet/create_vnet.yaml
+redirecting (type: modules) ansible.builtin.azure_rm_virtualnetwork to azure.azcollection.azure_rm_virtualnetwork
+redirecting (type: callback) ansible.builtin.yaml to community.general.yaml
+redirecting (type: callback) ansible.builtin.yaml to community.general.yaml
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
 
-PLAY [localhost] **********************************************************************
+PLAYBOOK: playbook-deploy.yaml *****************************************************************************************************************************************************
+1 plays in playbook-deploy.yaml
+Read vars_file 'az_setup_vars.yaml'
+Read vars_file 'az_setup_vars.yaml'
+Read vars_file 'az_setup_vars.yaml'
 
-TASK [include_tasks] ******************************************************************
-included: /home/vagrant/AWS/aws-automation/ansible-workspace/tasks/vpc/create-vpc.yaml for localhost
+PLAY [localhost] *******************************************************************************************************************************************************************
+Read vars_file 'az_setup_vars.yaml'
+META: ran handlers
+Read vars_file 'az_setup_vars.yaml'
 
-TASK [create VPC in SYD] **************************************************************
-changed: [localhost] => changed=true
-  vpc: {}
+TASK [Create Azure Resource Group] *************************************************************************************************************************************************
+task path: /home/remy/azure-automation/ansible-workspace/tasks/AU/vnet/create_rg.yaml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: remy
+<127.0.0.1> EXEC /bin/sh -c 'echo ~remy && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/remy/.ansible/tmp `"&& mkdir "` echo /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704 `" && echo ansible-tmp-1656252400.3291373-888-128996975526704="` echo /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704 `" ) && sleep 0'
+redirecting (type: modules) ansible.builtin.azure_rm_resourcegroup to azure.azcollection.azure_rm_resourcegroup
+Using module file /home/remy/.ansible/collections/ansible_collections/azure/azcollection/plugins/modules/azure_rm_resourcegroup.py
+<127.0.0.1> PUT /home/remy/.ansible/tmp/ansible-local-881a549k834/tmppx1fnj64 TO /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704/AnsiballZ_azure_rm_resourcegroup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704/ /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704/AnsiballZ_azure_rm_resourcegroup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704/AnsiballZ_azure_rm_resourcegroup.py && sleep 0'
 
-TASK [create VPC in LDN] **************************************************************
-changed: [localhost] => changed=true
-  vpc: {}
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/remy/.ansible/tmp/ansible-tmp-1656252400.3291373-888-128996975526704/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => changed=true 
+  contains_resources: true
+  invocation:
+    module_args:
+      ad_user: null
+      adfs_authority_url: null
+      api_profile: latest
+      append_tags: true
+      auth_source: auto
+      cert_validation_mode: null
+      client_id: null
+      cloud_environment: AzureCloud
+      force_delete_nonempty: true
+      location: australiaeast
+      log_mode: null
+      log_path: null
+      name: au_rg_001
+      password: null
+      profile: null
+      secret: null
+      state: absent
+      subscription_id: null
+      tags: null
+      tenant: null
+  state:
+    id: /subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/au_rg_001
+    location: australiaeast
+    name: au_rg_001
+    provisioning_state: Succeeded
+    status: Deleted
+    tags: null
+Read vars_file 'az_setup_vars.yaml'
 
-TASK [copy] ***************************************************************************
-changed: [localhost] => changed=true
-  checksum: 63c3dbe120d9e73a7beb64a1889466c045f4e006
-  dest: ./logging/vpc1_info.yaml
-  gid: 1000
-  group: vagrant
-  md5sum: 1acfaa8cf926efb24f8442cb94b04e29
-  mode: '0664'
-  owner: vagrant
-  size: 36
-  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576571.3597317-54834-210988277456010/source
-  state: file
-  uid: 1000
+TASK [create virtual network] ******************************************************************************************************************************************************
+task path: /home/remy/azure-automation/ansible-workspace/tasks/AU/vnet/create_vnet.yaml:3
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: remy
+<127.0.0.1> EXEC /bin/sh -c 'echo ~remy && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/remy/.ansible/tmp `"&& mkdir "` echo /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062 `" && echo ansible-tmp-1656252480.1793797-920-63965484923062="` echo /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062 `" ) && sleep 0'
+redirecting (type: modules) ansible.builtin.azure_rm_virtualnetwork to azure.azcollection.azure_rm_virtualnetwork
+Using module file /home/remy/.ansible/collections/ansible_collections/azure/azcollection/plugins/modules/azure_rm_virtualnetwork.py
+<127.0.0.1> PUT /home/remy/.ansible/tmp/ansible-local-881a549k834/tmps0asv_90 TO /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062/AnsiballZ_azure_rm_virtualnetwork.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062/ /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062/AnsiballZ_azure_rm_virtualnetwork.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062/AnsiballZ_azure_rm_virtualnetwork.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/remy/.ansible/tmp/ansible-tmp-1656252480.1793797-920-63965484923062/ > /dev/null 2>&1 && sleep 0'
+The full traceback is:
+  File "/tmp/ansible_azure_rm_virtualnetwork_payload_pp_xav36/ansible_azure_rm_virtualnetwork_payload.zip/ansible_collections/azure/azcollection/plugins/module_utils/azure_rm_common.py", line 589, in get_resource_group
+    return self.rm_client.resource_groups.get(resource_group)
+  File "/home/remy/.local/lib/python3.7/site-packages/azure/mgmt/resource/resources/v2017_05_10/operations/_resource_groups_operations.py", line 294, in get
+    raise exp
+fatal: [localhost]: FAILED! => changed=false 
+  invocation:
+    module_args:
+      ad_user: null
+      address_prefixes_cidr:
+      - 10.100.0.0/16
+      adfs_authority_url: null
+      api_profile: latest
+      append_tags: true
+      auth_source: auto
+      cert_validation_mode: null
+      client_id: null
+      cloud_environment: AzureCloud
+      dns_servers: null
+      location: null
+      log_mode: null
+      log_path: null
+      name: VNET
+      password: null
+      profile: null
+      purge_address_prefixes: false
+      purge_dns_servers: false
+      resource_group: au_rg_001
+      secret: null
+      state: absent
+      subscription_id: null
+      tags: null
+      tenant: null
+  msg: Error retrieving resource group au_rg_001 - Resource group 'au_rg_001' could not be found.
 
-TASK [copy] ***************************************************************************
-changed: [localhost] => changed=true
-  checksum: 63c3dbe120d9e73a7beb64a1889466c045f4e006
-  dest: ./logging/vpc2_info.yaml
-  gid: 1000
-  group: vagrant
-  md5sum: 1acfaa8cf926efb24f8442cb94b04e29
-  mode: '0664'
-  owner: vagrant
-  size: 36
-  src: /home/vagrant/.ansible/tmp/ansible-tmp-1647576571.7859633-54876-141176129989057/source
-  state: file
-  uid: 1000
+PLAY RECAP *************************************************************************************************************************************************************************
+localhost                  : ok=1    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
 
-PLAY RECAP ****************************************************************************
-localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
 
 ######### OUTPUT #################
 
-vagrant ansible-workspace (dev) $ aws_vpc
+PS /home/remy/azure-automation/ansible-workspace> az group list           
 [
-    {
-        "id": "vpc-08e83369b097b85f2",
-        "cidr": "172.31.0.0/16",
-        "name": null
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/uk_rg_001",
+    "location": "uksouth",
+    "managedBy": null,
+    "name": "uk_rg_001",
+    "properties": {
+      "provisioningState": "Succeeded"
     },
-    {
-        "id": "vpc-02492f230cf64d2fd",
-        "cidr": "172.20.30.0/24",
-        "name": "vpc_syd0002"
-    }
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/cloud-shell-storage-southeastasia",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-southeastasia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/NetworkWatcherRG",
+    "location": "australiaeast",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
 ]
-vagrant ansible-workspace (dev) $ aws_vpc --region eu-west-2
+
+
+
+
+PS /home/remy/azure-automation/ansible-workspace> az network vnet list
 [
-    {
-        "id": "vpc-03143662b677b4758",
-        "cidr": "172.31.0.0/16",
-        "name": null
-    }
+  {
+    "addressSpace": {
+      "addressPrefixes": [
+        "172.19.0.0/17"
+      ]
+    },
+    "bgpCommunities": null,
+    "ddosProtectionPlan": null,
+    "dhcpOptions": null,
+    "enableDdosProtection": false,
+    "enableVmProtection": null,
+    "encryption": null,
+    "etag": "W/\"fff75924-255b-4d87-95ba-0206600909b8\"",
+    "extendedLocation": null,
+    "flowTimeoutInMinutes": null,
+    "id": "/subscriptions/0dbfc49e-c3d9-40f3-876b-3b332b318f4b/resourceGroups/uk_rg_001/providers/Microsoft.Network/virtualNetworks/VNET",
+    "ipAllocations": null,
+    "location": "uksouth",
+    "name": "VNET",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "uk_rg_001",
+    "resourceGuid": "1668a002-8a96-4c39-a61c-af5a3792b967",
+    "subnets": [],
+    "tags": null,
+    "type": "Microsoft.Network/virtualNetworks",
+    "virtualNetworkPeerings": []
+  }
 ]
 
 
-Last VPC created are being destroyed.
+Note: In ansible the playbook is following the order of the tasks so it is always trying to check the AU Ressource group first and fails. Which means the UK Ressource group is not deleted. Terraform is easier to work with deployement and change to the build in a multi region environment.
